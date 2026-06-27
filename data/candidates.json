@@ -1,0 +1,110 @@
+[
+  {
+    "id": "c01",
+    "cv_text": "Backend engineer, 5 yrs. Python + Go microservices on AWS. Designed REST and gRPC APIs serving 20k rps. Postgres schema design, query optimization, on-call for production incidents. Built Kafka event pipeline for order processing. Docker + Kubernetes.",
+    "gold_track": "backend",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c02",
+    "cv_text": "Frontend developer, 4 yrs. React + TypeScript SPA work. Built a design system with Storybook, accessibility (WCAG AA), Redux state management, Playwright e2e tests. Cut bundle size 40%. Some Node BFF glue but focus is the client.",
+    "gold_track": "frontend",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c03",
+    "cv_text": "ML engineer, 3 yrs. PyTorch model training for recommendation, offline + online eval, feature pipelines in Python. Shipped a ranking model to prod with A/B testing. MLflow experiment tracking. Fine-tuned a BERT classifier.",
+    "gold_track": "ml",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c04",
+    "cv_text": "Data engineer, 6 yrs. SQL expert, dbt + Airflow ELT into Snowflake. Built ingestion from 30+ sources, Spark batch jobs, data quality monitoring. Dimensional modeling. Python for orchestration.",
+    "gold_track": "data",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c05",
+    "cv_text": "Full-stack engineer, 4 yrs. React/TypeScript front end AND Node/Express + Postgres back end. Owns features end to end. Designed REST APIs, built dashboards. Comfortable with Docker and CI/CD. Primary strength and most of my work is server-side API and database design; UI is secondary.",
+    "gold_track": "backend",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c06",
+    "cv_text": "Applied scientist. Strong Python, pandas, scikit-learn. Lots of SQL and built ETL pipelines in Airflow to feed models. Trained gradient-boosted models, did feature engineering and evaluation. The role I want is modeling, not pipeline plumbing — my core is ML model development.",
+    "gold_track": "ml",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c07",
+    "cv_text": "Junior dev, 1 yr bootcamp + internship. Built a couple of React todo apps and a small Flask API. Knows HTML/CSS/JS basics, a little Python. No production experience, no databases at scale. Eager to learn front-end work.",
+    "gold_track": "frontend",
+    "gold_decision": "reject"
+  },
+  {
+    "id": "c08",
+    "cv_text": "Backend engineer, 7 yrs. Java + Spring, designed high-throughput payment APIs, sharded MySQL, Redis caching, ran services on Kubernetes. Deep production debugging and incident response. No front-end.",
+    "gold_track": "backend",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c09",
+    "cv_text": "Graphic designer pivoting to tech. Knows Figma, some HTML/CSS, copied a few JavaScript snippets. No programming role experience, no framework knowledge, no databases. Wants a UI job.",
+    "gold_track": "frontend",
+    "gold_decision": "reject"
+  },
+  {
+    "id": "c10",
+    "cv_text": "Data scientist, 2 yrs. Mostly notebooks: SQL queries, pandas analysis, dashboards in Tableau. Some scikit-learn experiments but never shipped a model to production. Strong with data warehousing concepts, dbt models, and ELT. Wants a data engineering role building pipelines.",
+    "gold_track": "data",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c11",
+    "cv_text": "ML researcher, PhD. Published on transformers, trained large models on GPU clusters, deep eval methodology, PyTorch internals. Limited production/serving experience but strong modeling. Wants ML engineering.",
+    "gold_track": "ml",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c12",
+    "cv_text": "Sales engineer. Demoed software, wrote some SQL reports, light Python scripting for automation. No software engineering role, no API or pipeline building experience. Curious about data engineering.",
+    "gold_track": "data",
+    "gold_decision": "reject"
+  },
+  {
+    "id": "c13",
+    "cv_text": "Frontend engineer, 6 yrs. Vue and React, micro-frontends, performance budgets, SSR with Next.js, accessibility audits, component libraries. Mentors juniors. No backend ownership.",
+    "gold_track": "frontend",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c14",
+    "cv_text": "Backend-leaning platform engineer, 5 yrs. Go services, gRPC, Postgres, Kafka, Terraform, Kubernetes operators. Also dabbles in a React internal tool occasionally. Core work is backend services and infra.",
+    "gold_track": "backend",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c15",
+    "cv_text": "Recent grad. Did a university ML project (image classifier in PyTorch) and a database course. No internship, no production code, thin portfolio. Applying broadly for ML roles.",
+    "gold_track": "ml",
+    "gold_decision": "reject"
+  },
+  {
+    "id": "c16",
+    "cv_text": "Analytics engineer, 4 yrs. Lives in SQL and dbt, builds and tests transformation models in Snowflake, Airflow scheduling, owns the warehouse semantic layer. Python for tooling. Strong data engineering profile.",
+    "gold_track": "data",
+    "gold_decision": "advance"
+  },
+  {
+    "id": "c17",
+    "cv_text": "Mobile (iOS) developer, 5 yrs. Swift, UIKit, App Store releases. Strong client engineering but native mobile only — no web framework, no React/Vue, no backend services or databases at scale.",
+    "gold_track": "frontend",
+    "gold_decision": "reject"
+  },
+  {
+    "id": "c18",
+    "cv_text": "LLM engineer, 3 yrs. Builds RAG and agent systems, Python, vector databases, prompt engineering, evaluation harnesses, fine-tuning with LoRA. Ships NLP features to production with monitoring. Core is ML/LLM modeling and eval.",
+    "gold_track": "ml",
+    "gold_decision": "advance"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "backend",
+    "title": "Backend Engineer",
+    "blurb": "Builds and operates server-side services, APIs, and databases. Owns reliability, data modeling, and performance of backend systems.",
+    "rubric": {
+      "must_have": ["server-side language (Python/Go/Java/Node)", "REST or gRPC API design", "relational or NoSQL databases", "production debugging"],
+      "nice_to_have": ["message queues / event streaming", "Docker / Kubernetes", "cloud (AWS/GCP)", "CI/CD"],
+      "disqualifiers": ["no programming experience", "purely front-end / design only"]
+    }
+  },
+  {
+    "id": "frontend",
+    "title": "Frontend Engineer",
+    "blurb": "Builds user-facing web interfaces. Owns component architecture, accessibility, and the rendering/performance of the client app.",
+    "rubric": {
+      "must_have": ["JavaScript/TypeScript", "React/Vue/Angular", "HTML/CSS", "responsive UI"],
+      "nice_to_have": ["state management (Redux/Zustand)", "testing (Jest/Playwright)", "accessibility (a11y)", "design systems"],
+      "disqualifiers": ["no UI experience", "backend-only with no client work"]
+    }
+  },
+  {
+    "id": "ml",
+    "title": "Machine Learning Engineer",
+    "blurb": "Designs, trains, and ships ML/LLM systems. Owns model selection, data pipelines, evaluation, and serving of models in production.",
+    "rubric": {
+      "must_have": ["Python", "ML frameworks (PyTorch/TensorFlow/sklearn)", "model evaluation", "data preprocessing"],
+      "nice_to_have": ["LLMs / NLP", "MLOps / experiment tracking", "vector search / RAG", "GPU training"],
+      "disqualifiers": ["no ML or data background", "only used ML APIs with no modeling understanding"]
+    }
+  },
+  {
+    "id": "data",
+    "title": "Data Engineer",
+    "blurb": "Builds data pipelines and warehouses. Owns ingestion, transformation (ETL/ELT), and the quality and availability of analytical data.",
+    "rubric": {
+      "must_have": ["SQL", "Python or Scala", "ETL/ELT pipelines", "data warehousing"],
+      "nice_to_have": ["Spark / Airflow / dbt", "streaming (Kafka)", "cloud data platforms (Snowflake/BigQuery)", "data modeling"],
+      "disqualifiers": ["no SQL", "no pipeline/data experience"]
+    }
+  }
+]
