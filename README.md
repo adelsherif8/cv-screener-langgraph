@@ -10,6 +10,14 @@ that uses the traces to find and fix real failure modes.
 > traces exposed, the prompt/agent-config fixes, and before/after numbers
 > (accuracy up, latency down, cost down).
 
+![Architecture](assets/workflow.png)
+
+**[▶ Watch the 15-second demo](assets/demo.mp4)** &nbsp;·&nbsp; live interactive app below.
+
+| Interactive demo | Before / after (measured live) |
+| --- | --- |
+| ![Demo](assets/demo-optimized.png) | ![Metrics](assets/metrics.png) |
+
 ---
 
 ## Architecture
