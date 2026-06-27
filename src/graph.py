@@ -9,7 +9,7 @@ from __future__ import annotations
 from functools import lru_cache
 from typing import Any
 
-from langfuse import get_client, observe
+from langfuse import get_client, observe, propagate_attributes
 from langgraph.graph import END, START, StateGraph
 
 from .config import get_profile
@@ -33,7 +33,10 @@ def build_graph(profile: str = "baseline"):
     return g.compile()
 
 
-@observe(name="cv-screen")
+# capture_input/output disabled: we set clean trace I/O explicitly below so the
+# trace shows the CV in and the decision out — not the whole noisy state dict
+# (Langfuse best practice: don't let every function arg become the trace input).
+@observe(name="cv-screen", capture_input=False, capture_output=False)
 def run_screen(
     cv_text: str,
     profile: str = "baseline",
@@ -41,8 +44,9 @@ def run_screen(
 ) -> ScreenState:
     """Run one CV through the graph and return the final state.
 
-    Tags the Langfuse trace with the profile + candidate so before/after runs
-    are filterable in the dashboard.
+    Wraps the run in `propagate_attributes` so the profile/candidate tags and a
+    descriptive trace name flow to every child span — that's what makes the
+    before/after comparison filterable in the Langfuse dashboard.
     """
     graph = build_graph(profile)
     initial: ScreenState = {
@@ -52,26 +56,33 @@ def run_screen(
         "usages": [],
     }
 
-    trace_url = None
-    trace_id = None
-    if status()["langfuse"]:
-        client = get_client()
-        client.update_current_trace(
-            name=f"cv-screen[{profile}]",
-            tags=[f"profile:{profile}", f"candidate:{candidate_id}"],
-            metadata={"profile": profile, "candidate_id": candidate_id},
+    if not status()["langfuse"]:
+        final: dict[str, Any] = graph.invoke(initial)
+        final["trace_url"] = final["trace_id"] = None
+        return final  # type: ignore[return-value]
+
+    client = get_client()
+    with propagate_attributes(
+        trace_name=f"cv-screen[{profile}]",
+        tags=[f"profile:{profile}", f"candidate:{candidate_id}"],
+        metadata={"profile": profile, "candidate_id": candidate_id},
+    ):
+        final = graph.invoke(initial)
+        # Explicit, readable trace I/O (instead of the full state dict).
+        client.update_current_span(
+            input={"candidate_id": candidate_id, "cv_text": cv_text},
+            output={
+                "track": final.get("router_track"),
+                "decision": final.get("decision"),
+                "score": final.get("score"),
+                "cost_usd": round(sum(u["cost_usd"] for u in final.get("usages", [])), 6),
+            },
         )
-
-    final: dict[str, Any] = graph.invoke(initial)
-
-    if status()["langfuse"]:
         try:
-            trace_id = get_client().get_current_trace_id()
-            trace_url = get_client().get_trace_url()
+            final["trace_id"] = client.get_current_trace_id()
+            final["trace_url"] = client.get_trace_url()
         except Exception:
-            pass
-    final["trace_url"] = trace_url
-    final["trace_id"] = trace_id
+            final["trace_id"] = final["trace_url"] = None
     return final  # type: ignore[return-value]
 
 
