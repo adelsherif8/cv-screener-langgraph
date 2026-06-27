@@ -10,9 +10,12 @@ that uses the traces to find and fix real failure modes.
 > traces exposed, the prompt/agent-config fixes, and before/after numbers
 > (accuracy up, latency down, cost down).
 
+**[Live project page →](https://cv-screener-langgraph.vercel.app)** &nbsp;·&nbsp;
+**[Case study →](case_study/CASE_STUDY.md)**
+
 ![Architecture](assets/workflow.png)
 
-**[▶ Watch the 15-second demo](assets/demo.mp4)** &nbsp;·&nbsp; live interactive app below.
+**[▶ Watch the demo](assets/demo.mp4)** &nbsp;·&nbsp; or run the interactive app locally (below).
 
 | Interactive demo | Before / after (measured live) |
 | --- | --- |

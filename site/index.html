@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multi-Agent CV Screener — LangGraph + Langfuse</title>
+<meta name="description" content="A traced LangGraph multi-agent pipeline with a Langfuse-driven optimization case study: accuracy +7%, latency -37%, cost -95%.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{--bg:#0b1020;--card:#141b33;--line:#26304f;--ink:#eef1ff;--mut:#9aa2c8;--ac:#7c83ff;--gr:#34d399}
+  *{box-sizing:border-box;margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+  body{background:var(--bg);color:var(--ink);line-height:1.6}
+  a{color:var(--ac);text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header{padding:64px 0 30px;text-align:center}
+  .badge{display:inline-flex;gap:8px;align-items:center;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:6px 14px;font-size:13px;color:var(--mut);margin-bottom:22px}
+  h1{font-size:42px;letter-spacing:-1px;line-height:1.15}
+  h1 .ac{color:var(--ac)}
+  .lede{color:var(--mut);font-size:18px;max-width:680px;margin:16px auto 0}
+  .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+  .btn{display:inline-flex;gap:9px;align-items:center;padding:12px 20px;border-radius:11px;font-weight:600;font-size:15px;border:1px solid var(--line)}
+  .btn.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+  .btn.s{background:var(--card);color:var(--ink)}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:46px 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;text-align:center}
+  .stat .n{font-size:30px;font-weight:800;color:var(--gr);letter-spacing:-.5px}
+  .stat .l{color:var(--mut);font-size:13px;margin-top:4px}
+  section{padding:34px 0;border-top:1px solid var(--line)}
+  h2{font-size:24px;margin-bottom:6px;letter-spacing:-.4px}
+  .sub{color:var(--mut);margin-bottom:22px}
+  img,video{width:100%;border-radius:16px;border:1px solid var(--line);display:block}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .fm{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+  .fmc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .fmc i{color:var(--ac);font-size:18px}
+  .fmc h3{font-size:16px;margin:8px 0 4px}
+  .fmc p{color:var(--mut);font-size:14px}
+  .stack{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--mut)}
+  footer{padding:48px 0;text-align:center;color:var(--mut);font-size:14px;border-top:1px solid var(--line)}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}.two,.fm{grid-template-columns:1fr}h1{font-size:32px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="badge"><i class="fa-solid fa-diagram-project"></i> LangGraph &middot; Langfuse &middot; Multi-Agent &middot; LLM Observability</div>
+    <h1>Multi-Agent CV Screener<br><span class="ac">with trace-driven optimization</span></h1>
+    <p class="lede">A three-agent <b>router &rarr; retriever &rarr; scorer</b> pipeline in LangGraph, fully instrumented with Langfuse. I read the traces, found the failure modes, and fixed them &mdash; with measured before/after results.</p>
+    <div class="cta">
+      <a class="btn p" href="https://github.com/adelsherif8/cv-screener-langgraph"><i class="fa-brands fa-github"></i> View code on GitHub</a>
+      <a class="btn s" href="#demo"><i class="fa-solid fa-play"></i> Watch the demo</a>
+      <a class="btn s" href="https://github.com/adelsherif8/cv-screener-langgraph/blob/master/case_study/CASE_STUDY.md"><i class="fa-solid fa-file-lines"></i> Read the case study</a>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="n">+7%</div><div class="l">decision accuracy</div></div>
+    <div class="stat"><div class="n">&minus;37%</div><div class="l">latency / screen</div></div>
+    <div class="stat"><div class="n">&minus;95%</div><div class="l">cost per 1k screens</div></div>
+    <div class="stat"><div class="n">100&rarr;0%</div><div class="l">scorer parse failures</div></div>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <p class="sub">Every node is a Langfuse span; every model call a captured generation with token usage and cost.</p>
+    <img src="assets/workflow.png" alt="Architecture">
+  </section>
+
+  <section id="demo">
+    <h2>Live demo</h2>
+    <p class="sub">Paste a CV, pick a profile, and watch each agent decide &mdash; with a per-node cost breakdown and a link to the Langfuse trace.</p>
+    <video controls muted playsinline poster="assets/demo-optimized.png" preload="metadata">
+      <source src="assets/demo.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <section>
+    <h2>The optimization, measured</h2>
+    <p class="sub">Same pipeline, two profiles (gpt-4o &rarr; gpt-4o-mini + structured outputs). Numbers measured live through Langfuse over 18 labeled candidates.</p>
+    <div class="two">
+      <img src="assets/metrics.png" alt="Before / after metrics">
+      <div>
+        <div class="fm">
+          <div class="fmc"><i class="fa-solid fa-clipboard-check"></i><h3>Unparseable scorer output</h3><p>The free-text scorer never emitted a parseable score (100% fallback). Fixed with schema-constrained JSON &mdash; 100% &rarr; 0%.</p></div>
+          <div class="fmc"><i class="fa-solid fa-coins"></i><h3>Over-powered model</h3><p>gpt-4o on bounded tasks drove cost and latency. Moving to gpt-4o-mini cut cost ~95% with no accuracy loss.</p></div>
+          <div class="fmc"><i class="fa-solid fa-route"></i><h3>Protected routing</h3><p>Routing was already 100%; explicit prompts kept it there on the cheaper model &mdash; no regression.</p></div>
+          <div class="fmc"><i class="fa-solid fa-magnifying-glass-chart"></i><h3>Found in the traces</h3><p>Each fix traces back to a specific Langfuse observation &mdash; not guesswork.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Stack</h2>
+    <div class="stack">
+      <span class="chip"><i class="fa-solid fa-diagram-project"></i> LangGraph</span>
+      <span class="chip"><i class="fa-solid fa-chart-line"></i> Langfuse</span>
+      <span class="chip"><i class="fa-brands fa-python"></i> Python</span>
+      <span class="chip"><i class="fa-solid fa-robot"></i> OpenAI</span>
+      <span class="chip"><i class="fa-solid fa-sliders"></i> Gradio</span>
+    </div>
+  </section>
+
+  <footer>
+    Built by <a href="https://github.com/adelsherif8">Adel Sherif</a> &middot;
+    <a href="https://github.com/adelsherif8/cv-screener-langgraph">source &amp; case study on GitHub</a>
+  </footer>
+
+</div>
+</body>
+</html>
